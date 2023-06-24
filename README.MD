@@ -30,14 +30,14 @@ Both the endpoints are uses HttpMethod.POST
 
 **Request Objects**
 `
-public class UserRequestDTO {
-    String name;
-
-    String username;
-
-    String password;
-
-    Role role;
-}
+   public class UserRequestDTO {
+       String name;
+   
+       String username;
+   
+       String password;
+   
+       Role role;
+   }
 `
 
