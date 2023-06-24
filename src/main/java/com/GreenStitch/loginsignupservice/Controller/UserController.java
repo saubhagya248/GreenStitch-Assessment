@@ -1,12 +1,12 @@
 package com.GreenStitch.loginsignupservice.Controller;
 
-import com.GreenStitch.loginsignupservice.Configurations.JwtTokenUtil;
 import com.GreenStitch.loginsignupservice.DTO.JwtRequest;
 import com.GreenStitch.loginsignupservice.DTO.JwtResponse;
 import com.GreenStitch.loginsignupservice.DTO.UserRequestDTO;
 import com.GreenStitch.loginsignupservice.DTO.UserResponseDTO;
 import com.GreenStitch.loginsignupservice.Exceptions.UserAlreadyExistsException;
-import com.GreenStitch.loginsignupservice.Service.CustomUserDetailsService;
+import com.GreenStitch.loginsignupservice.JwtUtils.CustomUserDetailsService;
+import com.GreenStitch.loginsignupservice.JwtUtils.JwtTokenUtil;
 import com.GreenStitch.loginsignupservice.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/public")
 public class UserController {
 
 
@@ -34,6 +34,14 @@ public class UserController {
     private CustomUserDetailsService userDetailsService;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @PostMapping("/public")
+    public String dummy(){
+        return "Hello";
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<?> addUser(@RequestBody UserRequestDTO userRequest){
@@ -55,7 +63,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
+       
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final UserDetails userDetails = userDetailsService
@@ -63,7 +71,9 @@ public class UserController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        final JwtResponse response= new JwtResponse(token);
+
+        return ResponseEntity.ok(response);
     }
 
     private void authenticate(String username, String password) throws Exception {

@@ -1,6 +1,5 @@
-package com.GreenStitch.loginsignupservice.Configurations;
+package com.GreenStitch.loginsignupservice.JwtUtils;
 
-import com.GreenStitch.loginsignupservice.Service.CustomUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

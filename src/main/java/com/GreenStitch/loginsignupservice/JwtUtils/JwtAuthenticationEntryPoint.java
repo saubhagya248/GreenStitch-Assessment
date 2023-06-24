@@ -1,4 +1,4 @@
-package com.GreenStitch.loginsignupservice.Configurations;
+package com.GreenStitch.loginsignupservice.JwtUtils;
 import java.io.IOException;
 import java.io.Serializable;
 

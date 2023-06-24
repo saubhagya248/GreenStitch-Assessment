@@ -1,4 +1,4 @@
-package com.GreenStitch.loginsignupservice.Configurations;
+package com.GreenStitch.loginsignupservice.JwtUtils;
 
 import java.io.Serializable;
 import java.util.Date;

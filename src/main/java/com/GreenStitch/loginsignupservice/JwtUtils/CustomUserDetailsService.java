@@ -1,4 +1,4 @@
-package com.GreenStitch.loginsignupservice.Service;
+package com.GreenStitch.loginsignupservice.JwtUtils;
 
 import com.GreenStitch.loginsignupservice.Model.User;
 import com.GreenStitch.loginsignupservice.Repository.UserRepository;
