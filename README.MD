@@ -27,17 +27,52 @@ The DummyInitializer class will initialize 2 entries whenever the application wi
 There are two endpoints /login and /signup 
 Both the endpoints are uses HttpMethod.POST
 
+**Setting up the postman**
+Download and install the postman on your computer.
+* Run the project 
+* Create new Http Request in postman
+* Set the method as POST
+* In the uri bar enter https://localhost:8080 (choose this only if you are running the app on local server)
+* Now add /login or /signup (Depending on which api you want to test)
+* Go to the Body tab and select raw 
+* From the leftmost dropdown select JSON
+* Now in the editor below place the JSON object in the format mentioned below and send the request you will be able to see the response status as OK and JWT token 
+
 
 **Request Objects**
 
+The below object is for /signup endpoint, you are required to send a POST request with below mentioned fields i.e. name, username, password, role as a JSON Object
+
+*Note: the role field has two values ADMIN, USER as it is defined as Enum in the project you can add more by modifying the Enums.Role file *
+
 ```
-   public class UserRequestDTO {
-       String name;
+   [
+       "name": "examplename",
    
-       String username;
+       "username": "example@1",
    
-       String password;
+       "password": "password@123",
    
-       Role role;
-   }
+       "role": "ADMIN"
+   ]
 ```
+
+In response to the above request you will receive a JWT token 
+
+When sending a request to /login endpoint you are required to choose HttpMethod.POST and send a JSON object in below mentioned format:
+
+```
+    [
+        "username": "example",
+        "password": "example@123"
+    ]
+```
+
+You will get a JWT Token for the above request
+
+**Using the token**
+Inside Postman
+* Go to the authorization tab 
+* From the type select Bearer Token 
+* Enter the token you got in the text area and send the request 
+
