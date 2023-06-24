@@ -29,7 +29,7 @@ Both the endpoints are uses HttpMethod.POST
 
 
 **Request Objects**
-``
+`
 public class UserRequestDTO {
     String name;
 
@@ -39,5 +39,5 @@ public class UserRequestDTO {
 
     Role role;
 }
-``
+`
 
